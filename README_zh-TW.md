@@ -5,9 +5,19 @@
 
 本開源庫提供了一個端到端 (end-to-end) 且可重現的工作流程，旨在使用大型語言模型 (LLM) 生成具備隱私保護的合成資料集。透過結合參數高效的 LoRA 微調 (parameter-efficient LoRA fine-tuning) 與推論期的拉普拉斯擾動採樣 (inference-time Laplace-perturbed sampling)，我們提供了一個符合法規的安全資料合成方案，且無需承擔 DP-SGD 龐大的計算開銷。
 
+
+## 專案概述與核心價值
+
+本專案開發了一套結合大型語言模型 (LLM) 與差分隱私 (DP) 的端到端合成資料生成系統，有效防堵高敏感資料在共享與分析時的隱私外洩與個人重新識別風險。本系統不僅具備學術嚴謹性，更具備強大的產業落地能力：
+
+* **痛點與挑戰**：醫療、金融、保險等產業擁有極具價值的敏感數據，但在最高安全標準的限制下，傳統的隱私保護模型訓練 (如 DP-SGD) 運算成本極高，嚴重阻礙了數據分析與跨機構合作。
+* **輕量化核心解法**：我們採用開源的 [Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) 模型，結合 LoRA 參數高效微調與推論期的批次拉普拉斯 (Batch Laplace) 雜訊機制。使用者能依需求彈性調整隱私預算 ($\epsilon$)，在不更動模型骨幹的情況下，完美平衡資料效用與隱私安全。
+* **極低的硬體門檻**：本技術顯著縮減了訓練與部署的資源消耗，**僅需單張消費級顯示卡 (如 RTX 4090)** 即可完成端到端的隱私數據生成，大幅降低企業導入安全 AI 的硬體成本與技術門檻。
+* **嚴謹的隱私與效用稽核**：導入符合歐盟法規的隱私評估框架 [Anonymeter](https://github.com/statice/anonymeter)，證實能有效抵禦單一化、可連結性與推論攻擊；同時透過視覺化分析套件 [Sweetviz](https://github.com/fbdesignpro/sweetviz) 進行下游任務測試，證實合成數據完整保留了原始資料的統計特性與極高實用性。
+
 ## 主要特色
 
-* **參數高效微調 (Parameter-Efficient Fine-Tuning)**：使用 LoRA 技術來微調開源的 `Llama-3.1-8B` 模型。這使得系統可以在凍結骨幹網路的情況下，僅使用單張消費級 GPU 即可運行。
+* **參數高效微調 (Parameter-Efficient Fine-Tuning)**：使用 LoRA 技術來微調開源的 [Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) 模型。這使得系統可以在凍結骨幹網路的情況下，僅使用單張消費級 GPU 即可運行。
 * **推論期差分隱私 (Inference-Time Differential Privacy)**：透過在提示詞採樣 (prompt sampling) 期間，將經過校準的拉普拉斯雜訊直接注入模型 softmax 前的 token 機率向量 (logits) 中，來強制滿足 $(\epsilon, \delta)$-DP。
 * **內建隱私稽核 (Built-in Privacy Auditing)**：整合了 [Anonymeter](https://github.com/statice/anonymeter)（符合歐盟第 29 條工作小組指南），評估單一化風險 (Singling-out)、可連結性風險 (Linkability) 及推論風險 (Inference risks)。在 UCI Adult 資料集上的實驗顯示，平均風險降低了約 75%。
 
@@ -34,7 +44,6 @@
 ## 📝 引用 (Citation)
 
 如果您認為本專案對您的研究有幫助，請考慮引用我們的論文：
-*(等 DOI 或是 arXiv 連結出來後，可以把實際的 BibTeX 貼在這裡)*
 
 ```bibtex
 @INPROCEEDINGS{11260873,

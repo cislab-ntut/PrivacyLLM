@@ -3,14 +3,23 @@
 # Privacy-Enhancing LLM-Based Synthetic Dataset Generation
 
 > The official implementation of our DSC 2025 paper: **[Privacy-Enhancing LLM-Based Synthetic Dataset Generation by LoRA Fine-Tuning and Prompting](https://doi.org/10.1109/DSC65356.2025.11260873)**.
-> 
-> 
 
 This repository provides an end-to-end reproducible workflow for generating privacy-preserving synthetic datasets using Large Language Models (LLMs). By combining parameter-efficient LoRA fine-tuning with inference-time Laplace-perturbed sampling, we offer a regulation-compliant recipe for safe data synthesis without the heavy computational overhead of DP-SGD.
 
+
+## Project Overview (Why This Matters)
+
+This project introduces an end-to-end synthetic data generation system that combines Large Language Models (LLMs) with Differential Privacy (DP). It effectively prevents privacy leakage and re-identification risks when sharing and analyzing highly sensitive data. Designed for both academic rigor and real-world industrial deployment, our framework offers the following core values:
+
+* **The Challenge:** Industries such as healthcare, finance, and insurance possess incredibly valuable sensitive data. However, traditional privacy-preserving model training (e.g., DP-SGD) incurs prohibitive computational costs, severely hindering data analysis and cross-institutional collaboration under strict security standards.
+* **Our Lightweight Solution:** We utilize the open-source [Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) model, combining parameter-efficient LoRA fine-tuning with an inference-time Batch Laplace noise mechanism. Users can flexibly adjust the privacy budget ($\epsilon$) to perfectly balance data utility and privacy security without altering the model's frozen backbone.
+* **Extremely Low Hardware Barrier:** This technology drastically reduces the resources required for training and deployment. **A single consumer-level GPU (e.g., RTX 4090)** is sufficient to complete the end-to-end private data generation, significantly lowering the hardware costs and technical barriers for enterprises adopting secure AI.
+* **Rigorous Privacy & Utility Auditing:** We integrate the EU-compliant [Anonymeter](https://github.com/statice/anonymeter) framework, proving our system effectively defends against singling-out, linkability, and inference attacks. Furthermore, downstream task testing using the [Sweetviz](https://github.com/fbdesignpro/sweetviz) visual analysis suite confirms that the synthetic data fully retains the statistical characteristics and high utility of the original dataset.
+
+
 ## Key Features
 
-* **Parameter-Efficient Fine-Tuning**: Utilizes LoRA to adapt the open-source `Llama-3.1-8B` model. This allows the system to run on a single consumer-level GPU while keeping the backbone frozen.
+* **Parameter-Efficient Fine-Tuning**: Utilizes LoRA to adapt the open-source [Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) model. This allows the system to run on a single consumer-level GPU while keeping the backbone frozen.
 
 
 * **Inference-Time Differential Privacy**: Enforces $(\epsilon, \delta)$-DP by directly injecting calibrated Laplace noise into the model's pre-softmax token-probability vector (logits) during prompt sampling.
@@ -47,9 +56,6 @@ Comparing the Raw-Generated texts with our DP-Synthetic datasets:
 ## Citation
 
 If you find this repository useful in your research, please consider citing our paper:
-
-
-*(等你們的 DOI 或是 arXiv 連結出來後，可以把實際的 BibTeX 貼在這裡)* 
 
 ```bibtex
 @INPROCEEDINGS{11260873,
