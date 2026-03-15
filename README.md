@@ -7,7 +7,7 @@
 This repository provides an end-to-end reproducible workflow for generating privacy-preserving synthetic datasets using Large Language Models (LLMs). By combining parameter-efficient LoRA fine-tuning with inference-time Laplace-perturbed sampling, we offer a regulation-compliant recipe for safe data synthesis without the heavy computational overhead of DP-SGD.
 
 
-## Project Overview (Why This Matters)
+## Project Overview
 
 This project introduces an end-to-end synthetic data generation system that combines Large Language Models (LLMs) with Differential Privacy (DP). It effectively prevents privacy leakage and re-identification risks when sharing and analyzing highly sensitive data. Designed for both academic rigor and real-world industrial deployment, our framework offers the following core values:
 
