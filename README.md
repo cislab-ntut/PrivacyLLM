@@ -1,6 +1,6 @@
 *Read this in other languages: [繁體中文](README_zh-TW.md).*
 
-# Single-GPU Privacy Engine: Lightweight LLM-Empowered DP Synthetic Data System
+# Single-GPU Privacy Engine: Lightweight LLM-Empowered Differential Privacy Synthetic Data System
 <!-- # Privacy-Enhancing LLM-Based Synthetic Dataset Generation -->
 
 > 🏆 **Winner of the IEEE DSC 2025 Best Poster Award**
