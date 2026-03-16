@@ -1,15 +1,17 @@
 *Read this in other languages: [繁體中文](README_zh-TW.md).*
 
-# Privacy-Enhancing LLM-Based Synthetic Dataset Generation
+# Single-GPU Privacy Engine: Lightweight LLM-Empowered DP Synthetic Data System
+<!-- # Privacy-Enhancing LLM-Based Synthetic Dataset Generation -->
 
+> 🏆 **Winner of the IEEE DSC 2025 Best Poster Award**
+>
 > The official implementation of our DSC 2025 paper: **[Privacy-Enhancing LLM-Based Synthetic Dataset Generation by LoRA Fine-Tuning and Prompting](https://doi.org/10.1109/DSC65356.2025.11260873)**.
 
-This repository provides an end-to-end reproducible workflow for generating privacy-preserving synthetic datasets using Large Language Models (LLMs). By combining parameter-efficient LoRA fine-tuning with inference-time Laplace-perturbed sampling, we offer a regulation-compliant recipe for safe data synthesis without the heavy computational overhead of DP-SGD.
 
 
 ## Project Overview
 
-This project introduces an end-to-end synthetic data generation system that combines Large Language Models (LLMs) with Differential Privacy (DP). It effectively prevents privacy leakage and re-identification risks when sharing and analyzing highly sensitive data. Designed for both academic rigor and real-world industrial deployment, our framework offers the following core values:
+This project develops an end-to-end synthetic data generation system that integrates Large Language Models (LLMs) with Differential Privacy (DP), effectively mitigating privacy leakage and individual re-identification risks when sharing and analyzing highly sensitive data. By combining parameter-efficient LoRA fine-tuning with inference-time Laplace-perturbed sampling, we provide a regulation-compliant, secure data synthesis solution without incurring the massive computational overhead of traditional DP-SGD. Designed for both academic rigor and real-world industrial deployment, our framework offers the following core values:
 
 * **The Challenge:** Industries such as healthcare, finance, and insurance possess incredibly valuable sensitive data. However, traditional privacy-preserving model training (e.g., DP-SGD) incurs prohibitive computational costs, severely hindering data analysis and cross-institutional collaboration under strict security standards.
 * **Our Lightweight Solution:** We utilize the open-source [Llama-3.1-8B](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B) model, combining parameter-efficient LoRA fine-tuning with an inference-time Batch Laplace noise mechanism. Users can flexibly adjust the privacy budget ($\epsilon$) to perfectly balance data utility and privacy security without altering the model's frozen backbone.
